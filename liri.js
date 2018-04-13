@@ -13,3 +13,10 @@ switch(process.argv[2]){
     case `do-what-it-says` :
     doWhat(); break;
 }
+
+function tweets() { 
+    
+}
+
+
+

@@ -1,0 +1,45 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add node-spotify-api
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.11.1
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "liri-node-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "keys.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/elizabethr25/liri-node-app.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/elizabethr25/liri-node-app/issues"
+    },
+    "homepage": "https://github.com/elizabethr25/liri-node-app#readme"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: ENOTDIR: not a directory, scandir '/Users/elizabethrichardson/Documents/Repos/liri-node-app/node_modules'
