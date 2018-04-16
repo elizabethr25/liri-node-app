@@ -80,27 +80,55 @@ function tweets() {
 function spotifySong(song) {
     spotify.search({ type: 'track', query: song }, function (error, data) {
         // console.log(JSON.stringify(data));
-        if (!error) {
+        if (error) {
+            return console.log(error);
+        }
+        else {
             for (var i = 0; i < data.tracks.items.length; i++) {
                 //Artists 
                 console.log('Artist: ' + data.tracks.items[i].artists[0].name);
-                fs.appendFile('log.txt', 'Artist: ' + data.tracks.items[i].artists[0].name);
+                fs.appendFile('log.txt', 'Artist: ' + data.tracks.items[i].artists[0].name, function(error) {
+                    if (error){
+                        console.log(error);
+                    }
+                    else {
+                        console.log("Content added!");
+                    }
+                });
                 //Song's name
                 console.log('Song name: ' + data.tracks.items[i].name);
-                fs.appendFile('log.txt', 'Song name: ' + data.tracks.items[i].name);
+                fs.appendFile('log.txt', 'Song name: ' + data.tracks.items[i].name, function(error) {
+                    if (error){
+                        console.log(error);
+                    }
+                    else {
+                        console.log("Content added!");
+                    }
+                });
                 //Link to song
                 console.log('Link to song: ' + data.tracks.items[i].external_urls.spotify);
-                fs.appendFile('log.txt', 'Link to song' + data.tracks.items[i].external_urls.spotify);
+                fs.appendFile('log.txt', 'Link to song' + data.tracks.items[i].external_urls.spotify, function(error) {
+                    if (error){
+                        console.log(error);
+                    }
+                    else {
+                        console.log("Content added!");
+                    }
+                });
                 //Album
                 console.log('Album: ' + data.tracks.items[i].album.name);
-                fs.appendFile('log.txt', 'Album: ' + data.tracks.items[i].album.name);
+                fs.appendFile('log.txt', 'Album: ' + data.tracks.items[i].album.name, function(error) {
+                    if (error){
+                        console.log(error);
+                    }
+                    else {
+                        console.log("Content added!");
+                    }
+                });
                 //Break
                 console.log('------------------------');
                 // fs.appendFile('log.txt', '------------------------');
             }
-        }
-        else {
-            return console.log('An error occurred:');
         }
     });
 }
@@ -142,5 +170,6 @@ function doWhat() {
 
         spotifySong(txt[1]);
     }
-)};
+    )
+};
 
