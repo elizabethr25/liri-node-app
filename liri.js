@@ -1,8 +1,10 @@
 require('dotenv').config();
 
+var request = require("request");
 var fs = require('fs');
 const Twitter = require('twitter');
 const Spotify = require('node-spotify-api');
+const omdb = require('omdb');
 const keys = require('./keys.js')
 
 const spotify = new Spotify(keys.spotify);
@@ -32,7 +34,11 @@ switch (arg1) {
         }
         break;
     case 'movie-this':
-        movie();
+        if (x) {
+            movie(x);
+        } else {
+            movie('Mr. Nobody');
+        }
         break;
     case 'do-what-it-says':
         doWhat();
@@ -88,6 +94,9 @@ function spotifySong(song) {
                 //Album
                 console.log('Album: ' + data.tracks.items[i].album.name);
                 fs.appendFile('log.txt', 'Album: ' + data.tracks.items[i].album.name);
+                //Break
+                console.log('------------------------');
+                // fs.appendFile('log.txt', '------------------------');
             }
         }
         else {
@@ -96,6 +105,42 @@ function spotifySong(song) {
     });
 }
 
+// OMDb
 
 
+
+
+
+function movie(name) {
+    var queryURL = "http://www.omdbapi.com/?t=" + name + "&y=&plot=short&apikey=trilogy";
+    // console.log(queryURL);
+    request(queryURL, function (error, response, body) {
+        if (error) {
+            return console.log(error);
+        }
+        if (movie.length < 1) {
+            return console.log('No movies were found!');
+        }
+        else {
+            // console.log(typeof body);
+            // console.log(body);
+            console.log('Movie title: ' + JSON.parse(body).Title);
+            console.log('Year movie came: ' + JSON.parse(body).Year);
+            console.log('IMDb Rating of the Movie: ' + JSON.parse(body).imdbRating);
+            console.log('Country where the movie was produced: ' + JSON.parse(body).Country);
+            console.log('Language of the movie: ' + JSON.parse(body).Language);
+            console.log('Plot of the movie: ' + JSON.parse(body).Plot);
+            console.log('Actors in the movie: ' + JSON.parse(body).Actors);
+        }
+    });
+}
+
+//Do what it says
+function doWhat() {
+    fs.readFile('random.txt', "utf8", function (error, data) {
+        var txt = data.split(',');
+
+        spotifySong(txt[1]);
+    }
+)};
 
